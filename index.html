@@ -15,7 +15,7 @@
 
         <div class="panel__devtools">
           <!-- TODO: при нажатии элементы массива перемешиваются в случайном порядке -->
-          <button class="shuffle__btn line">Перемешать</button>
+          <button class="shuffle__btn line btn">Перемешать</button>
 
           <div class="line">
             <!-- пользователь указывает нижнюю границу weight -->
@@ -30,7 +30,7 @@
           </div>
 
           <!-- TODO: при нажатии элементы массива фильтруются в пределах [minweight, maxweight] -->
-          <button class="filter__btn line">Фильтровать</button>
+          <button class="filter__btn line btn">Фильтровать</button>
 
           <div class="line">
             <span>Алгоритм сортировки:</span>
@@ -45,29 +45,31 @@
           </div>
 
           <!-- TODO: при нажатии происходит смена алгоритма сортировки -->
-          <button class="sort__change__btn line">Сменить алгоритм сортировки</button>
+          <button class="sort__change__btn line btn">Сменить алгоритм сортировки</button>
 
           <!-- TODO: при нажатии происходит сортировка и рассчет времени сортировки -->
-          <button class="sort__action__btn line">Сортировать</button>
+          <button class="sort__action__btn line btn">Сортировать</button>
 
           <!-- пользователь указывает значения характеристик будущего фрукта -->
+          <form>
           <div class="line">
             <div>kind:</div>
-            <input class="kind__input" />
+            <input class="kind__input" required/>
           </div>
 
           <div class="line">
             <div>color:</div>
-            <input class="color__input" />
+            <input class="color__input" required/>
           </div>
 
           <div class="line">
             <div>weight:</div>
-            <input class="weight__input" />
+            <input class="weight__input" required/>
           </div>
 
           <!-- TODO: при нажатии новый фрукт добавляется в конец списка -->
-          <button class="add__action__btn line">Добавить фрукт</button>
+          <button class="add__action__btn line btn" type="submit">Добавить фрукт</button>
+        </form>
         </div>
       </section>
 

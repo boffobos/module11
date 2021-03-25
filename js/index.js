@@ -127,8 +127,19 @@ sortActionButton.addEventListener('click', () => {
 
 /*** ДОБАВИТЬ ФРУКТ ***/
 
-addActionButton.addEventListener('click', () => {
+addActionButton.addEventListener('click', (event) => {
   // TODO: создание и добавление нового фрукта в массив fruits
   // необходимые значения берем из kindInput, colorInput, weightInput
+  if(kindInput.value !== '' && colorInput.value !=='' && weightInput.value !== '') {
+    event.preventDefault();
+  let newFriut = {'kind':`${kindInput.value}`, 'color': `${colorInput.value}`, 'weight':`${weightInput.value}`};
+  fruits.push(newFriut);
+  kindInput.value = '';
+  colorInput.value = '';
+  weightInput.value = '';
+  }
+  else {
+    alert('Введите все поля')
+  }
   display();
 });
