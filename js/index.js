@@ -35,6 +35,17 @@ const colorToClass = {
   "фиолетовый": "fruit_purple",
   "лиловый": "fruit_violet",
   "розово-красный": "fruit_carmazin",
+  "fruit_red": "красный",
+  "fruit_lightbrown": "светло-коричневый",
+  "fruit_orange": "оранжевый",
+  "fruit_yellow": "желтый",
+  "fruit_lightgreen": "салатовый",
+  "fruit_green": "зеленый",
+  "fruit_lightblue": "голубой",
+  "fruit_blue": "синий",
+  "fruit_purple": "фиолетовый",
+  "fruit_violet": "лиловый",
+  "fruit_carmazin": "розово-красный",
 }
 
 /*** ОТОБРАЖЕНИЕ ***/
@@ -50,7 +61,7 @@ const display = () => {
     // и добавляем в конец списка fruitsList при помощи document.appendChild
     //создаем <li> и назначаем ему классы
     const li = document.createElement("LI");
-    const attLi = `fruit__item ${fruits.color}`;
+    const attLi = `fruit__item ${colorToClass[fruits[i].color]}`;
     li.setAttribute("class", attLi);
     // создаем <div class="fruit__info"></div>
     const fiDiv = document.createElement("DIV");
@@ -63,10 +74,17 @@ const display = () => {
     const div4 = document.createElement("DIV");
     //заполняем divs инфой
     div1.textContent = `index: ${i}`;
-    div2.textContent = `kind: ${fruits.kind}`;
-    div3.textContent = `color: ${fruits.color}`;
-    div4.textContent = `weight: ${fruits.weight}`;
-
+    div2.textContent = `kind: ${fruits[i].kind}`;
+    div3.textContent = `color: ${fruits[i].color}`;
+    div4.textContent = `weight: ${fruits[i].weight}`;
+    //добавляем divs > DIV > LI
+    fiDiv.appendChild(div1);
+    fiDiv.appendChild(div2);
+    fiDiv.appendChild(div3);
+    fiDiv.appendChild(div4);
+    li.appendChild(fiDiv);
+    fruitsList.appendChild(li);
+    
   }
 };
 
@@ -79,21 +97,16 @@ display();
 
 // генерация случайного числа в заданном диапазоне
 const getRandomInt = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * (max - min)) + min;
 };
 
 // перемешивание массива
 const shuffleFruits = () => {
   let result = [];
-
-  // ATTENTION: сейчас при клике вы запустите бесконечный цикл и браузер зависнет
+  
   while (fruits.length > 0) {
-    // TODO: допишите функцию перемешивания массива
-    //
-    // Подсказка: находим случайный элемент из fruits, используя getRandomInt
-    // вырезаем его из fruits и вставляем в result.
-    // ex.: [1, 2, 3], [] => [1, 3], [2] => [3], [2, 1] => [], [2, 1, 3]
-    // (массив fruits будет уменьшатся, а result заполняться)
+    let rand = getRandomInt(0, fruits.length);
+    result = result.concat(fruits.splice(rand, 1));
   }
 
   fruits = result;
@@ -170,7 +183,7 @@ addActionButton.addEventListener('click', (event) => {
   // необходимые значения берем из kindInput, colorInput, weightInput
   if(kindInput.value !== '' && colorInput.value !=='' && weightInput.value !== '') {
     event.preventDefault();
-  let newFriut = {'kind':`${kindInput.value}`, 'color': `${colorInput.value}`, 'weight': Number(weightInput.value)};
+  let newFriut = {'kind':`${kindInput.value}`, 'color': `${colorToClass[colorInput.value]}`, 'weight': Number(weightInput.value)};
   fruits.push(newFriut);
   kindInput.value = '';
   colorInput.value = '';
