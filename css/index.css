@@ -47,6 +47,20 @@ input {
   max-width: 200px;
 }
 
+select {
+  margin: 5px 10px 5px 0;
+  border: 0;
+  padding: 0 10px;
+  line-height: 36px;
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
+  background: none;
+  background-color: #3cbc8d;
+  color: white;
+  max-width: 200px;
+}
+
 main {
   display: flex;
   flex-direction: row;

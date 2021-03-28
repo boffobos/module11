@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -54,17 +54,30 @@
           <form>
           <div class="line">
             <div>kind:</div>
-            <input class="kind__input" required/>
+            <input class="kind__input" type="text" required/>
           </div>
 
           <div class="line">
             <div>color:</div>
-            <input class="color__input" required/>
+            <!-- <input class="color__input" required/> -->
+            <select name="color" class="color__input" id="fr_color">
+              <option value="fruit_red">Красный</option>
+              <option value="fruit_lightbrown">светло-коричневый</option>
+              <option value="fruit_orange">Оранжевый</option>
+              <option value="fruit_yellow">Желтый</option>
+              <option value="fruit_lightgreen">Салатовый</option>
+              <option value="fruit_green">Зеленый</option>
+              <option value="fruit_lightblue">Голубой</option>
+              <option value="fluit_blue">Синий</option>
+              <option value="fruit_purple">Фиолетовый</option>
+              <option value="fruit_violet">Лиловый</option>
+              <option value="fruit_carmazin">Розово-красный</option>
+            </select>
           </div>
 
           <div class="line">
             <div>weight:</div>
-            <input class="weight__input" required/>
+            <input class="weight__input" type="number" required/>
           </div>
 
           <!-- TODO: при нажатии новый фрукт добавляется в конец списка -->

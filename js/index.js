@@ -23,18 +23,54 @@ let fruitsJSON = `[
 // преобразование JSON в объект JavaScript
 let fruits = JSON.parse(fruitsJSON);
 
+const colorToClass = {
+  "красный": "fruit_red",
+  "светло-коричневый": "fruit_lightbrown",
+  "оранжевый": "fruit_orange",
+  "желтый": "fruit_yellow",
+  "салатовый": "fruit_lightgreen",
+  "зеленый": "fruit_green",
+  "голубой": "fruit_lightblue",
+  "синий": "fruit_blue",
+  "фиолетовый": "fruit_purple",
+  "лиловый": "fruit_violet",
+  "розово-красный": "fruit_carmazin",
+}
+
 /*** ОТОБРАЖЕНИЕ ***/
 
 // отрисовка карточек
 const display = () => {
   // TODO: очищаем fruitsList от вложенных элементов,
   // чтобы заполнить актуальными данными из fruits
+  fruitsList.innerHTML = "";
 
   for (let i = 0; i < fruits.length; i++) {
     // TODO: формируем новый элемент <li> при помощи document.createElement,
     // и добавляем в конец списка fruitsList при помощи document.appendChild
+    //создаем <li> и назначаем ему классы
+    const li = document.createElement("LI");
+    const attLi = `fruit__item ${fruits.color}`;
+    li.setAttribute("class", attLi);
+    // создаем <div class="fruit__info"></div>
+    const fiDiv = document.createElement("DIV");
+    const attDiv = "fruit__info";
+    fiDiv.setAttribute("class", attDiv);
+    //создаем <div></div> * 4
+    const div1 = document.createElement("DIV");
+    const div2 = document.createElement("DIV");
+    const div3 = document.createElement("DIV");
+    const div4 = document.createElement("DIV");
+    //заполняем divs инфой
+    div1.textContent = `index: ${i}`;
+    div2.textContent = `kind: ${fruits.kind}`;
+    div3.textContent = `color: ${fruits.color}`;
+    div4.textContent = `weight: ${fruits.weight}`;
+
   }
 };
+
+
 
 // первая отрисовка карточек
 display();
@@ -89,6 +125,7 @@ let sortTime = '-'; // инициализация состояния време�
 
 const comparationColor = (a, b) => {
   // TODO: допишите функцию сравнения двух элементов по цвету
+  let colorArr = ['red', 'lightbrown', 'orange', 'yellow', '' ]
 };
 
 const sortAPI = {
@@ -98,6 +135,7 @@ const sortAPI = {
 
   quickSort(arr, comparation) {
     // TODO: допишите функцию быстрой сортировки
+
   },
 
   // выполняет сортировку и производит замер времени
@@ -132,7 +170,7 @@ addActionButton.addEventListener('click', (event) => {
   // необходимые значения берем из kindInput, colorInput, weightInput
   if(kindInput.value !== '' && colorInput.value !=='' && weightInput.value !== '') {
     event.preventDefault();
-  let newFriut = {'kind':`${kindInput.value}`, 'color': `${colorInput.value}`, 'weight':`${weightInput.value}`};
+  let newFriut = {'kind':`${kindInput.value}`, 'color': `${colorInput.value}`, 'weight': Number(weightInput.value)};
   fruits.push(newFriut);
   kindInput.value = '';
   colorInput.value = '';
@@ -143,3 +181,4 @@ addActionButton.addEventListener('click', (event) => {
   }
   display();
 });
+
