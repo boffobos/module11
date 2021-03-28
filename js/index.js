@@ -10,6 +10,9 @@ const kindInput = document.querySelector('.kind__input'); // поле с наз�
 const colorInput = document.querySelector('.color__input'); // поле с названием цвета
 const weightInput = document.querySelector('.weight__input'); // поле с весом
 const addActionButton = document.querySelector('.add__action__btn'); // кнопка добавления
+const minWeightFilter = document.querySelector('.minweight__input') //поле с минимальным весом
+const maxWeightFilter = document.querySelector('.maxweight__input') //поле с максимальным весом
+
 
 // список фруктов в JSON формате
 let fruitsJSON = `[
@@ -23,6 +26,7 @@ let fruitsJSON = `[
 // преобразование JSON в объект JavaScript
 let fruits = JSON.parse(fruitsJSON);
 
+// convert string color to class and back
 const colorToClass = {
   "красный": "fruit_red",
   "светло-коричневый": "fruit_lightbrown",
@@ -50,15 +54,11 @@ const colorToClass = {
 
 /*** ОТОБРАЖЕНИЕ ***/
 
-// отрисовка карточек
+// отрисовка карточек - ready
 const display = () => {
-  // TODO: очищаем fruitsList от вложенных элементов,
-  // чтобы заполнить актуальными данными из fruits
   fruitsList.innerHTML = "";
 
   for (let i = 0; i < fruits.length; i++) {
-    // TODO: формируем новый элемент <li> при помощи document.createElement,
-    // и добавляем в конец списка fruitsList при помощи document.appendChild
     //создаем <li> и назначаем ему классы
     const li = document.createElement("LI");
     const attLi = `fruit__item ${colorToClass[fruits[i].color]}`;
@@ -77,7 +77,7 @@ const display = () => {
     div2.textContent = `kind: ${fruits[i].kind}`;
     div3.textContent = `color: ${fruits[i].color}`;
     div4.textContent = `weight: ${fruits[i].weight}`;
-    //добавляем divs > DIV > LI
+    //добавляем divs > DIV > LI > UL
     fiDiv.appendChild(div1);
     fiDiv.appendChild(div2);
     fiDiv.appendChild(div3);
@@ -88,19 +88,17 @@ const display = () => {
   }
 };
 
-
-
 // первая отрисовка карточек
 display();
 
 /*** ПЕРЕМЕШИВАНИЕ ***/
 
-// генерация случайного числа в заданном диапазоне
+// генерация случайного числа в заданном диапазоне - ready
 const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
-// перемешивание массива
+// перемешивание массива - ready
 const shuffleFruits = () => {
   let result = [];
   
@@ -122,12 +120,20 @@ shuffleButton.addEventListener('click', () => {
 // фильтрация массива
 const filterFruits = () => {
   fruits.filter((item) => {
-    // TODO: допишите функцию
+    let max;
+    let min = 0;
+    max = maxWeightFilter.value;
+    min = minWeightFilter.value;
+    if (!max) {
+      alert('Введите параметры для фильтрации');
+      return;
+    } else { return (item.weight <= max && item.weight >= min)}
   });
 };
 
 filterButton.addEventListener('click', () => {
-  filterFruits();
+  let filtered = filterFruits();
+  fruits = filtered;
   display();
 });
 
