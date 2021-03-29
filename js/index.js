@@ -118,22 +118,20 @@ shuffleButton.addEventListener('click', () => {
 /*** ФИЛЬТРАЦИЯ ***/
 
 // фильтрация массива
-const filterFruits = () => {
-  fruits.filter((item) => {
-    let max;
+const filterFruits = () => { 
+  return fruits.filter((item) => {
     let min = 0;
-    max = maxWeightFilter.value;
-    min = minWeightFilter.value;
-    if (!max) {
-      alert('Введите параметры для фильтрации');
-      return;
-    } else { return (item.weight <= max && item.weight >= min)}
+    let max = 100; 
+    if (maxWeightFilter.value !== '') max = maxWeightFilter.value;
+    if (minWeightFilter.value !== '') min = minWeightFilter.value;
+    return (item.weight <= max && item.weight >= min);
+    
   });
 };
 
 filterButton.addEventListener('click', () => {
-  let filtered = filterFruits();
-  fruits = filtered;
+  fruits = filterFruits();
+  console.log(fruits);
   display();
 });
 
