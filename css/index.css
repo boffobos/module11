@@ -51,7 +51,7 @@ input {
 select {
   margin: 5px 10px 5px 0;
   border: 0;
-  padding: 0 10px;
+  padding: 10px 10px;
   line-height: 36px;
   display: inline-block;
   vertical-align: middle;
@@ -60,6 +60,7 @@ select {
   background-color: #3cbc8d;
   color: white;
   max-width: 200px;
+  width: 189px;
 }
 
 main {
@@ -131,7 +132,7 @@ main {
 }
 
 .fruit_orange {
-  background: #e6b83c;
+  background: #FFA500;
 }
 
 .fruit_yellow {
@@ -175,5 +176,28 @@ main {
   border-radius: 5px;
   background: #fff;
   height: 100%;
+  padding: 10px;
+}
+
+
+dialog {
+  width: 300px;
+  height: 200px;
+  padding: 20px;
+  }
+
+dialog > button {
+  width: 100%;
+  display: block;
+    
+}
+
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: space-between;
   padding: 10px;
 }
