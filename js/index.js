@@ -168,7 +168,8 @@ resetButton.addEventListener('click', () =>{
   } else {
     fruits = JSON.parse(fruitsJSON);
   }
-  
+  minWeightFilter.value = '';
+  maxWeightFilter.value = '';
   display();
 });
 
