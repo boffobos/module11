@@ -23,7 +23,13 @@ let fruitsJSON = `[
   {"kind": "Дуриан", "color": "зеленый", "weight": 35},
   {"kind": "Личи", "color": "розово-красный", "weight": 17},
   {"kind": "Карамбола", "color": "желтый", "weight": 28},
-  {"kind": "Тамаринд", "color": "светло-коричневый", "weight": 22}
+  {"kind": "Тамаринд", "color": "светло-коричневый", "weight": 22},
+  {"kind": "Апельсин", "color": "оранжевый", "weight": 28},
+  {"kind": "Банан", "color": "желтый", "weight": 35},
+  {"kind": "Клубника", "color": "красный", "weight": 26},
+  {"kind": "Инжир", "color": "лиловый", "weight": 16},
+  {"kind": "Слива", "color": "синий", "weight": 23},
+  {"kind": "Голубика", "color": "голубой", "weight": 5}
 ]`;
 
 // преобразование JSON в объект JavaScript
@@ -159,8 +165,11 @@ filterButton.addEventListener('click', () => {
 resetButton.addEventListener('click', () =>{
   if (fruitsBackUp !== null) {
     fruits = fruitsBackUp;
-    display();
+  } else {
+    fruits = JSON.parse(fruitsJSON);
   }
+  
+  display();
 });
 
 /*** СОРТИРОВКА ***/
@@ -190,6 +199,7 @@ const sortAPI = {
 
   quickSort(arr, comparation) {
       if (arr.length <2 ) return arr;
+    
     let pivot = arr[0];
     const left = [];
     const right = [];
@@ -201,7 +211,8 @@ const sortAPI = {
         right.push(arr[i]);
       }
     }
-    return quickSort(left).concat(pivot, quickSort(right));
+
+    return sortAPI.quickSort(left, comparationColor).concat(pivot, sortAPI.quickSort(right, comparationColor));
   },
 
   insertionSort(arr, comparation) {
@@ -262,7 +273,7 @@ const sortAPI = {
   // выполняет сортировку и производит замер времени
   startSort(sort, arr, comparation) {
     const start = new Date().getTime();
-    sort(arr, comparation);
+    fruits = sort(arr, comparation);
     const end = new Date().getTime();
     sortTime = `${end - start} ms`;
   },
