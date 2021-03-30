@@ -274,7 +274,7 @@ const sortAPI = {
   // выполняет сортировку и производит замер времени
   startSort(sort, arr, comparation) {
     const start = new Date().getTime();
-    fruits = sort(arr, comparation);
+    fruits = sort(arr, comparation); //Добавлено присвоение переменной результатов работы функции для функций, не изменяющих массив в процессе сортировки
     const end = new Date().getTime();
     sortTime = `${end - start} ms`;
   },
